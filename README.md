@@ -61,12 +61,15 @@ IIb) Additional Tools and Technologies to be used in Future
  
 III. Advantages and the Usefulness in the context of Natural Disasters 
 1.Offloading Traffic: Disasters like hurricanes, earth quakes and tornados occur all the time. There are limited personal attending to the calls and taking input from potentially several hundred thousand victims. A chat bot can offload this traffic and effectively help people. Watson Assistant 
+
 2.Resource Management (Matching needs with resources): Supplying resources such as food, clothes, electronics to users is a challenging task as the responders might not exactly know what each person needs. With the chatbot people can ask exactly what they need, and our chat bot automatically matches the needs with the resources.Natalia Rodriguez, his generator ran out of diesel and he died in the aftermath of Puerto Rico. If we could have only supplied and alerted the responders in a timely manner, he would have been alive. (Database and assistant NLC) 
+
 3.Emergency Classification and Alerting Responders: Imagine an Earth quake in the west coast of USA. There will be many calls and 911 centers cannot handle all of them. So, Classifying the situation of emergency into  
 1.High 
       2.Medium 
       3.Low  
        Will save lives. (Twilio to send messages) 
+       
  
 4)Automatic Location Detection: Imagine a person in a very deadly situation, he might hardly  have a minute or so to speak or talk to a chat bot. In such situations, out chat bot will automatically categorize the emergency, locate the person and send a message to the responders along with what the person has informed the chatbot so that the responder will have enough information to reach and save the person’s life.  Google html geolocation services. We also take location info such as city from user 
  
@@ -121,8 +124,7 @@ We are not stopping with a bot. We are already on course to use  state of the ar
 9)
    To Send messages to your own telephone number, you must register your mobile phone number using Twilio and enable SMS also you need to subscribe to a Twilio phone number. The cost of each SMS is 0.00075 cents. But, it is certainly worth it when it comes to saving lives. 
  
-10)
-   https://elizabeth.eu-gb.mybluemix.net/ 
+10)https://elizabeth.eu-gb.mybluemix.net/ 
  
 11)	Ambiguities in Video : 
     When I say script in video, it just means that the way of using a chat bot. Not the python script. 
