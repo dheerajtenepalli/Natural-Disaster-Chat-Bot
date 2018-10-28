@@ -6,4 +6,4 @@ ELIZABETH NATURAL DISASTER CHATBOT
  	 	 	 
  	 
 See technical design documentation pdf before using the link.
-Watch the video provided in Video_Link.txt
+Watch the video provided in Video_Link_Final.txt
