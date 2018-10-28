@@ -5,5 +5,5 @@ ELIZABETH NATURAL DISASTER CHATBOT
     https://elizabeth.eu-gb.mybluemix.net/ 
  	 	 	 
  	 
-See technical design documentation before using the link.
-Watch the video provided in
+See technical design documentation pdf before using the link.
+Watch the video provided in Video_Link.txt
