@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>ChatBot</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/static/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 
+
+  </head>
+  <body>
+	<br><br><br><br><br><br>
+	<p></p>
+
+
+	<div class="fixed-header">
+        <div class="container">
+            <nav>
+
+
+	
+
+                <img src="/static/watson.jpg" alt="logo">
+				<h1>Natural Disaster Chatbot</h1>
+				<button id="locatemeplease"onclick="getLocation()">Locate me!</button>
+					<p id="demoo"></p>
+            </nav>
+        </div>
+    </div>
+	<p id="demo"></p>
+    <div>
+      <div id="chatbox">
+        <p class="botText"><span>Hi,Elizabeth here!</span></p>
+      </div>
+	  <div class="fixed-footer">
+        <div id="userInput" class="autocomplete" style="width:635px;">
+			<input id="textInput" type="text" name="msg" placeholder="Message">
+			
+			<input id="buttonInput" type="submit" value="Submit">
+			
+		</div>   
+	  </div>
+	  <div id="bottom">
+	</div>
+
+      <script>
+	var x_lat_long = document.getElementById("demoo");
+
+function getLocation() {
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+		
+    } else { 
+        x_lat_long.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+		
+    x_lat_long.innerHTML = "Latitude: "+position.coords.latitude + "," +" Longitude : "+ position.coords.longitude;
+    return_data = $.get("/maploc", { lat: position.coords.latitude, long: position.coords.longitude});
+}
+	function autocomplete(inp) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+               $.get("/AutoSpell", { msg: inp }).done(function(arr) {
+
+	
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+         
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+              b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        
+      }
+	});
+  });
+
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+      x[i].parentNode.removeChild(x[i]);
+    }
+  }
+}
+
+}
+        function getBotResponse() {
+		  
+          var rawText = $("#textInput").val();
+          var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
+          $("#textInput").val("");
+          $("#chatbox").append(userHtml);
+          document.getElementById('bottom').scrollIntoView({block: 'start', behavior: 'smooth'});
+          $.get("/get", { msg: rawText }).done(function(data) {
+			if (data.includes("accordion")){
+				var botHtml = data;
+			}
+			else{
+				var botHtml = '<p class="botText">' + data + '</p>';
+			}
+            $("#chatbox").append(botHtml);
+			var acc = document.getElementsByClassName("accordion");
+			var i;
+			for (i = 0; i < acc.length; i++) {
+				acc[i].addEventListener("click", function() {
+				  this.classList.toggle("active");
+				  var panel = this.nextElementSibling;
+				  if (panel.style.maxHeight){
+					panel.style.maxHeight = null;
+				  } else {
+					panel.style.maxHeight = panel.scrollHeight + "px";
+				  } 
+				});
+			}
+            document.getElementById('bottom').scrollIntoView({block: 'start', behavior: 'smooth'});
+          });
+        }
+		$("#textInput").keypress(function(e) {
+			if(e.which == 13) {
+				getBotResponse();
+			}
+		});
+        $("#buttonInput").click(function() {
+          getBotResponse();
+        })
+      </script>
+ <script>
+autocomplete(document.getElementById("textInput"));
+</script> 
+    </div>
+  </body>
+</html>

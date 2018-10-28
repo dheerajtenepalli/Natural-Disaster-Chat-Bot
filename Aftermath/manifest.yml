@@ -1,0 +1,4 @@
+---
+applications:
+- name: elizabeth 
+  memory: 256M

@@ -1,0 +1,9 @@
+1. Before proceeding to actually use the bot. Please read the entire technical description
+2. Then watch , please watch the entire video. I know it's long. I tried to keep it short. I actually cut it short from 50 minutes to just 20.
+3. Then actually use the bot deployed in the link.
+4. If any location problems occur in google chrome.(There is a small bug in some versions of google chrome which does not allow access for locations ) Try to update the version of chrome.
+5. Or Simply use firefox.
+
+
+
+6. Finally, Thanks for this great Oppurtunity. Let's save people together.

@@ -1,0 +1,11 @@
+Hi Dheeraj2202,
+
+I believe, it is fine to assume that people in disaster zone will have Internet / cell phone network access after disaster. At least in populated areas it is relatively easy to restore the network shortly after disaster. There are emergency power supply systems:
+
+https://en.wikipedia.org/wiki/Emergency_power_system
+
+And rapid deployment units for cell network:
+
+https://en.wikipedia.org/wiki/Mobile_cell_sites
+
+Thus, it should not be a problem
