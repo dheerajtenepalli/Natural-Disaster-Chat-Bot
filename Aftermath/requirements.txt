@@ -10,7 +10,7 @@ geopy==1.17.0
 ibm-db==2.0.9
 idna==2.7
 itsdangerous==0.24
-Jinja2==2.10
+Jinja2==2.11.3
 MarkupSafe==1.0
 numpy==1.15.1
 pandas==0.23.3
