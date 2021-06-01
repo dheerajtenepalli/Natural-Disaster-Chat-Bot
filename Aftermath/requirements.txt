@@ -22,7 +22,7 @@ ratelim==0.1.6
 requests==2.19.1
 six==1.11.0
 twilio==6.17.0
-urllib3==1.23
+urllib3==1.26.5
 watson-developer-cloud==2.0.1
 weather-api==1.0.4
 websocket-client==0.47.0
