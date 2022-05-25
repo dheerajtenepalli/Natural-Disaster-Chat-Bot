@@ -14,7 +14,7 @@ Jinja2==2.10
 MarkupSafe==1.0
 numpy==1.15.1
 pandas==0.23.3
-PyJWT==1.6.4
+PyJWT==2.4.0
 PySocks==1.6.8
 python-dateutil==2.7.3
 pytz==2018.5
